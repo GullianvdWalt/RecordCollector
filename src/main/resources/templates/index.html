@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/styles.css">
+
+    <title>Keep On Spinning</title>
+</head>
+<body>
+
+        <!---       Top Navbar Container           -->
+        <div class="nav-bar-top">
+
+            <!-- Record Logo Icon -->
+            <div class="logo-container"><img src="/Icons/record8.png" alt="record_logo" id="logo-icon" class="logo-icon"></div>
+
+            <!-- Page Heading Top -->
+            <h1>Keep On Spinning</h1>
+
+            <!--- Add New Record Button -->
+            <button type="button" id="newRecordBtn" class="homeNewRecordBtn" onclick="window.location.href='New_Record.html'">Add Record</button>
+
+        </div>
+        <!-- End of Top Nav Bar -->
+
+        <!-- Filter Section -->
+        <div class="filter-container">
+
+            <img src="/Icons/filter.png" alt="filter-icon" id="filter-icon" class="filter-icon">
+
+            <!-- Filter Input Boxes-->
+            <input type="text" id="artistFilter" class="filterInput"  placeholder="Filter by Artist..." >
+                
+            <input type="text" id="albumFilter" class="filterInput" placeholder="Filter by Album..." >
+
+            <input type="text" id="yearFilter"  class="filterInput" placeholder="Filter by Year..." >
+
+            <input type="text" id="countryFilter"  class="filterInput" placeholder="Filter by Country..." >
+
+        </div>
+        <!-- End of Filter Section  -->
+
+        <!-- Records Table -->
+        <div class="table-section">
+
+            <table>
+
+                <tr>
+                    <th class="table-head" id="table-head-artist">Artist</th>
+                    <th class="table-head" id="table-head-album">Album</th>
+                    <th class="table-head" id="table-head-catNum">Catalog Number</th>
+                    <th class="table-head" id="table-head-format">Format</th>
+                    <th class="table-head" id="table-head-record-conditon">Record Condition</th>
+                    <th class="table-head" id="table-head-cover-condition">Cover Condition</th>
+                    <th class="table-head" id="table-head-remakrs">Remakrs</th>
+                    <th class="table-head" id="table-head-country">Country</th>
+                    <th class="table-head" id="table-head-release-date">Original Release Date</th>
+                    <th class="table-head" id="table-head-on-discogs">On Discogs</th>
+                    <th class="table-head" id="table-head-discogs-link">Discogs Link</th>
+                </tr>
+
+                <tr>
+                    <td class="table-data-artist"> 10CC </td>
+                    <td class="table-data"> The Original Soundtrack</td>
+                    <td class="table-data-catNum"> CAC 1999 LOO </td>
+                    <td class="table-data-format"> LP </td>
+                    <td class="table-data-record-condition"> VG+ </td>
+                    <td class="table-data-cover-condition"> VG+ </td>
+                    <td class="table-data-remarks"> RE 1980 </td>
+                    <td class="table-data-country"> South Africa </td>
+                    <td class="table-data-release-date"> 1977 </td>
+                    <td class="table-data-on-discogs"> false</td>
+                    <td class="table-data-discogs-link"> n/a </td>
+                </tr>
+
+               <tr>
+                    <td class="table-data-artist"> 10CC </td>
+                    <td class="table-data"> The Original Soundtrack</td>
+                    <td class="table-data-catNum"> CAC 1999 LOO   </td>
+                    <td class="table-data-format"> LP </td>
+                    <td class="table-data-record-condition"> VG+ </td>
+                    <td class="table-data-cover-condition"> VG+ </td>
+                    <td class="table-data-remarks"> RE 1980 </td>
+                    <td class="table-data-country"> South Africa </td>
+                    <td class="table-data-release-date"> 1977 </td>
+                    <td class="table-data-on-discogs"> false</td>
+                    <td class="table-data-discogs-link"> n/a </td>
+                </tr>
+
+           </table>
+
+        </div>
+        <!-- End of Records Table -->
+
+    <!--   Footer   -->
+    <footer> <p>&copy; 2020 | Gullian Van Der Walt</p>  </footer>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
