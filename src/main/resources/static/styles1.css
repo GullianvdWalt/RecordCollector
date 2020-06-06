@@ -25,29 +25,21 @@ Height and width: e.g. 100vh
   box-sizing: border-box;
 }
 body, html{
- height: 100vh;
+
 }
 body{
     background-color:  #333333;
     margin: 0; 
-    display: grid;
-    grid-template-rows: 20% auto auto 10%;
-    grid-gap: 1em;
-    grid-template-areas: 
-        "header"
-        "filter-section"
-        "table"
-        "footer";
-    }
-
-
+    display: flex;
+    flex-direction: column;
+}    
 .nav-bar-top{
-    grid-area: header;
     display: flex;
     flex-direction:row;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-start;
+    margin-bottom: 5%;
 }
 
 h1{
@@ -95,7 +87,6 @@ button:hover{
 
 /* Footer Container */
 footer{
-    grid-area: footer;
     text-align: center;
 }
 /* Footer Text */
@@ -116,12 +107,12 @@ footer p{
 
 /* Filter Section */
 .filter-container{
-    grid-area: filter-section;
     display: flex;
     flex-direction:row;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
+    margin-bottom: 5%;
 }
 .filterInput{
     height: 2.5em;
@@ -151,8 +142,7 @@ footer p{
 
 
 /* Table Section Container*/
-.table-section{
-    grid-area: table;    
+.table-section{    
     padding: 5px;
     min-height: 40em;
 }
@@ -187,11 +177,6 @@ tr:nth-child(even){
     color: #434343;
 }
 
-/*Change last Row to same as heading*/
-tr:last-of-type{
-    background-color: #434343;
-    color: #ffffff;
-}
 
 tr:active{
     font-weight: bold;

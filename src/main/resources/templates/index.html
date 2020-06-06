@@ -14,7 +14,7 @@
         <div class="nav-bar-top">
 
             <!-- Record Logo Icon -->
-            <div class="logo-container"><img src="record8.png" alt="record_logo" id="logo-icon" class="logo-icon"></div>
+            <div class="logo-container"><img src="record8.png" alt="record_logo" id="logo-icon" class="logo-icon"/></div>
 
             <!-- Page Heading Top -->
             <h1>Keep On Spinning</h1>
@@ -27,13 +27,12 @@
 
         <!-- Filter Section -->
         <div class="filter-container">
-
-            <img src="filter.png" alt="filter-icon" id="filter-icon" class="filter-icon">
-
+           
+             <img src="../static/Images/filter.png" th:src="@{Images/filter.png}" alt="filter" id="filter-icon" class="filter-icon"/>
             <!-- Filter Input Boxes-->
-            <input type="text" id="artistFilter" class="filterInput"  placeholder="Filter by Artist..." >
+            <input type="text" id="artistFilter" class="filterInput"  placeholder="Filter by Artist...">
                 
-            <input type="text" id="albumFilter" class="filterInput" placeholder="Filter by Album..." >
+            <input type="text" id="albumFilter" class="filterInput" placeholder="Filter by Album...">
 
             <input type="text" id="yearFilter"  class="filterInput" placeholder="Filter by Year..." >
 
@@ -45,7 +44,7 @@
         <!-- Records Table -->
         <div class="table-section">
 
-            <table>
+            <table id="myTable">
                  <tr>
                     <th class="table-head" id="table-head-id">ID</th>
                     <th class="table-head" id="table-head-artist">Artist</th>
@@ -74,7 +73,8 @@
                      <td class="table-data-remarks" th:text="${records.remarks}">Remarks</td>
                     <td class="table-data-release-date" th:text="${records.album_release_date}">Original Release Date</td>
                     <td class="table-data-on-discogs" th:text="${records.on_discogs}">On Discogs </td>
-                    <td class="table-data-discogs-link" th:text="${records.discogs_link}">Discogs Link</td>
+                    <td class="table-data-discogs-link" >  <a th:href="@{records.discogs_link}"><img src="link-icon.jpg" alt="link-icon"> </a></td>
+                    
                 </tr>
            </table>
 
