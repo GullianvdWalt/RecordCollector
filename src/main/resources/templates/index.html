@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/static/styles.css">
-
+    <meta charset="UTF-8"/>
+    
     <title>Keep On Spinning</title>
+    
+    <link rel="stylesheet" href="styles1.css"></link>
 </head>
 <body>
 
@@ -14,7 +14,7 @@
         <div class="nav-bar-top">
 
             <!-- Record Logo Icon -->
-            <div class="logo-container"><img src="/Icons/record8.png" alt="record_logo" id="logo-icon" class="logo-icon"></div>
+            <div class="logo-container"><img src="record8.png" alt="record_logo" id="logo-icon" class="logo-icon"></div>
 
             <!-- Page Heading Top -->
             <h1>Keep On Spinning</h1>
@@ -28,7 +28,7 @@
         <!-- Filter Section -->
         <div class="filter-container">
 
-            <img src="/Icons/filter.png" alt="filter-icon" id="filter-icon" class="filter-icon">
+            <img src="filter.png" alt="filter-icon" id="filter-icon" class="filter-icon">
 
             <!-- Filter Input Boxes-->
             <input type="text" id="artistFilter" class="filterInput"  placeholder="Filter by Artist..." >
@@ -46,49 +46,36 @@
         <div class="table-section">
 
             <table>
-
-                <tr>
+                 <tr>
+                    <th class="table-head" id="table-head-id">ID</th>
                     <th class="table-head" id="table-head-artist">Artist</th>
                     <th class="table-head" id="table-head-album">Album</th>
                     <th class="table-head" id="table-head-catNum">Catalog Number</th>
                     <th class="table-head" id="table-head-format">Format</th>
-                    <th class="table-head" id="table-head-record-conditon">Record Condition</th>
                     <th class="table-head" id="table-head-cover-condition">Cover Condition</th>
-                    <th class="table-head" id="table-head-remakrs">Remakrs</th>
-                    <th class="table-head" id="table-head-country">Country</th>
+                    <th class="table-head" id="table-head-record-conditon">Record Condition</th>
+                    <th class="table-head" id="table-head-pressing">Pressing</th>
+                    <th class="table-head" id="table-head-remakrs">Remarks</th>
                     <th class="table-head" id="table-head-release-date">Original Release Date</th>
                     <th class="table-head" id="table-head-on-discogs">On Discogs</th>
                     <th class="table-head" id="table-head-discogs-link">Discogs Link</th>
+                </tr>   
+               
+                
+                <tr th:each="records: ${listRecords}">
+                    <td class="table-data-artist" th:text="${records.id}">ID</td>
+                    <td class="table-data-artist" th:text="${records.artist}">Artist</td>
+                    <td class="table-data" th:text="${records.album}">Album</td>
+                    <td class="table-data-catNum" th:text="${records.catalog_number}">Catalog Number</td>
+                    <td class="table-data-format" th:text="${records.format}">Format</td>
+                    <td class="table-data-record-condition" th:text="${records.cover_condition}">Cover Condition</td>
+                    <td class="table-data-cover-condition" th:text="${records.record_condition}">Record Condition</td>
+                     <td class="table-data-country" th:text="${records.pressing}">Pressing</td>
+                     <td class="table-data-remarks" th:text="${records.remarks}">Remarks</td>
+                    <td class="table-data-release-date" th:text="${records.album_release_date}">Original Release Date</td>
+                    <td class="table-data-on-discogs" th:text="${records.on_discogs}">On Discogs </td>
+                    <td class="table-data-discogs-link" th:text="${records.discogs_link}">Discogs Link</td>
                 </tr>
-
-                <tr>
-                    <td class="table-data-artist"> 10CC </td>
-                    <td class="table-data"> The Original Soundtrack</td>
-                    <td class="table-data-catNum"> CAC 1999 LOO </td>
-                    <td class="table-data-format"> LP </td>
-                    <td class="table-data-record-condition"> VG+ </td>
-                    <td class="table-data-cover-condition"> VG+ </td>
-                    <td class="table-data-remarks"> RE 1980 </td>
-                    <td class="table-data-country"> South Africa </td>
-                    <td class="table-data-release-date"> 1977 </td>
-                    <td class="table-data-on-discogs"> false</td>
-                    <td class="table-data-discogs-link"> n/a </td>
-                </tr>
-
-               <tr>
-                    <td class="table-data-artist"> 10CC </td>
-                    <td class="table-data"> The Original Soundtrack</td>
-                    <td class="table-data-catNum"> CAC 1999 LOO   </td>
-                    <td class="table-data-format"> LP </td>
-                    <td class="table-data-record-condition"> VG+ </td>
-                    <td class="table-data-cover-condition"> VG+ </td>
-                    <td class="table-data-remarks"> RE 1980 </td>
-                    <td class="table-data-country"> South Africa </td>
-                    <td class="table-data-release-date"> 1977 </td>
-                    <td class="table-data-on-discogs"> false</td>
-                    <td class="table-data-discogs-link"> n/a </td>
-                </tr>
-
            </table>
 
         </div>
