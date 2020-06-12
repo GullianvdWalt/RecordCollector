@@ -3,10 +3,10 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    
+
     <title>Keep On Spinning</title>
-    
-    <link rel="stylesheet" href="styles1.css"></link>
+
+    <link rel="stylesheet" th:href="@{styles.css}"></link>
 </head>
 <body>
 
@@ -14,30 +14,26 @@
         <div class="nav-bar-top">
 
             <!-- Record Logo Icon -->
-            <div class="logo-container"><img src="record8.png" alt="record_logo" id="logo-icon" class="logo-icon"/></div>
+            <div class="logo-container"><img th:src="@{Images/record8.png}" alt="record_logo" id="logo-icon" class="logo-icon"/></div>
 
             <!-- Page Heading Top -->
             <h1>Keep On Spinning</h1>
 
             <!--- Add New Record Button -->
-            <button type="button" id="newRecordBtn" class="homeNewRecordBtn" onclick="window.location.href='New_Record.html'">Add Record</button>
+            <button type="button" id="newRecordBtn" class="homeNewRecordBtn" data-target="#newRecordModal">Add Record</button>
 
         </div>
         <!-- End of Top Nav Bar -->
 
         <!-- Filter Section -->
         <div class="filter-container">
-           
+             <!-- Filter Icon -->
              <img src="../static/Images/filter.png" th:src="@{Images/filter.png}" alt="filter" id="filter-icon" class="filter-icon"/>
             <!-- Filter Input Boxes-->
-            <input type="text" id="artistFilter" class="filterInput"  placeholder="Filter by Artist...">
-                
-            <input type="text" id="albumFilter" class="filterInput" placeholder="Filter by Album...">
-
-            <input type="text" id="yearFilter"  class="filterInput" placeholder="Filter by Year..." >
-
-            <input type="text" id="countryFilter"  class="filterInput" placeholder="Filter by Country..." >
-
+                <input type="text" id="artistFilter" class="filterInput"  placeholder="Filter by Artist...">
+                <input type="text" id="albumFilter" class="filterInput" placeholder="Filter by Album...">
+                <input type="text" id="yearFilter"  class="filterInput" placeholder="Filter by Year..." >
+                <input type="text" id="countryFilter"  class="filterInput"  placeholder="Filter by Country..." >
         </div>
         <!-- End of Filter Section  -->
 
@@ -46,7 +42,7 @@
 
             <table id="myTable">
                  <tr>
-                    <th class="table-head" id="table-head-id">ID</th>
+                    <th class="table-head" id="table-head-id" title="SortByID">ID</th>
                     <th class="table-head" id="table-head-artist">Artist</th>
                     <th class="table-head" id="table-head-album">Album</th>
                     <th class="table-head" id="table-head-catNum">Catalog Number</th>
@@ -58,32 +54,215 @@
                     <th class="table-head" id="table-head-release-date">Original Release Date</th>
                     <th class="table-head" id="table-head-on-discogs">On Discogs</th>
                     <th class="table-head" id="table-head-discogs-link">Discogs Link</th>
-                </tr>   
-               
-                
-                <tr th:each="records: ${listRecords}">
-                    <td class="table-data-artist" th:text="${records.id}">ID</td>
-                    <td class="table-data-artist" th:text="${records.artist}">Artist</td>
-                    <td class="table-data" th:text="${records.album}">Album</td>
-                    <td class="table-data-catNum" th:text="${records.catalog_number}">Catalog Number</td>
-                    <td class="table-data-format" th:text="${records.format}">Format</td>
-                    <td class="table-data-record-condition" th:text="${records.cover_condition}">Cover Condition</td>
-                    <td class="table-data-cover-condition" th:text="${records.record_condition}">Record Condition</td>
-                     <td class="table-data-country" th:text="${records.pressing}">Pressing</td>
-                     <td class="table-data-remarks" th:text="${records.remarks}">Remarks</td>
-                    <td class="table-data-release-date" th:text="${records.album_release_date}">Original Release Date</td>
+                </tr>
+
+
+                <tr th:each="records:${listRecords}">
+                    <td class="table-data-artist" th:text="${records.id}" title="Click To Edit">ID</td>
+                    <td class="table-data-artist" th:text="${records.artist}" title="Click To Edit">Artist</td>
+                    <td class="table-data" th:text="${records.album}" title="Click To Edit">Album</td>
+                    <td class="table-data-catNum" th:text="${records.catalog_number}" title="Click To Edit">Catalog Number</td>
+                    <td class="table-data-format" th:text="${records.format}" title="Click To Edit">Format</td>
+                    <td class="table-data-record-condition" th:text="${records.cover_condition}" title="Click To Edit">Cover Condition</td>
+                    <td class="table-data-cover-condition" th:text="${records.record_condition}" title="Click To Edit">Record Condition</td>
+                    <td class="table-data-country" th:text="${records.pressing}" title="Click To Edit">Pressing</td>
+                    <td class="table-data-remarks" th:text="${records.remarks}" title="Click To Edit">Remarks</td>
+                    <td class="table-data-release-date" th:text="${records.album_release_date}" title="Click To Edit">Original Release Date</td>
                     <td class="table-data-on-discogs" th:text="${records.on_discogs}">On Discogs </td>
-                    <td class="table-data-discogs-link" >  <a th:href="@{records.discogs_link}"><img src="link-icon.jpg" alt="link-icon"> </a></td>
-                    
+                    <td class="table-data-discogs-link" >  <a th:href="@{records.discogs_link}"><img th:src="@{Images/link-icon.jpg}" alt="link-icon"> </a></td>
+
                 </tr>
            </table>
 
         </div>
         <!-- End of Records Table -->
 
+        <!--    Edit Record Modal   -->
+        <div id="recordEditModal" class="recordEditModal">
+          <div class="middle">
+            <div class="model-content">
+              <h4>ID</h4>
+              <input type="text">
+              <h4>Artist</h4>
+              <input type="text">
+              <h4>Album</h4>
+              <input type="text">
+              <h4>Catalog Number</h4>
+              <input type="text">
+              <h4>Format</h4>
+              <input type="text">
+              <div class="buttonContainer">
+                <a id="close" class="close">Close</a>
+                <a href="" class="editSave">Save</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End of Edit Record Modal  -->
+
+        <!--     New Record Modal       -->
+        <div id="newRecordModal" class="newRecordModal">
+          <div class="new-middle">
+            <h2>New Record</h2>
+            <!-- New Record Form Start -->
+            <form class="model-content-new" th:action="@{/records/addNew}" method="post">
+
+             <!-- <input type="text" class="id" id="idInput" placeholder="ID..." readonly> -->
+              <input type="text" id="artistInput" class="recordInput"  placeholder="Artist..." required name="artist">
+              <input type="text" id="albumInput" class="recordInput"  placeholder="Album..." required name="album">
+                  <input type="text" id="catNumInput" class="recordInput"  placeholder="Catalog Number..."  name ="catalog_number" required>
+              <select id="format" name="format">
+                <option value="LP">LP</option>
+                <option value="LP, Gatefold">LP, Gatefold</option>
+                <option value="2LP">2LP</option>
+                <option value="2LP, Gatefold">2LP, Gatefold</option>
+                <option value="3LP">3LP</option>
+                <option value="3LP, Gatefold">3LP, Gatefold</option>
+                <option value="3LP, Trifold">3LP, Trifold</option>
+                <option value="4LP">4LP</option>
+                <option value="4LP">4LP</option>
+                <option value="Boxset">Boxset</option>
+                <option value="10-Inch">10-Inch</option>
+                <option value="7-Inch">7-Inch</option>
+              </select>
+                <select id="coverCondigtion" name="cover_condition">
+                <option value="">Cover Condition</option>
+                <option value="M">M</option>
+                <option value="NM">NM</option>
+                <option value="EX">EX</option>
+                <option value="VG++">VG++</option>
+                <option value="VG+">VG+</option>
+                <option value="VG">VG</option>
+                <option value="VG-">VG-</option>
+                <option value="G+">G+</option>
+                <option value="G">G</option>
+                <option value="F">F</option>
+                <option value="P">P</option>
+              </select>
+              <select id="recordCondigtion" name="record_condition">
+                <option value="">Record Condition</option>
+                <option value="M">M</option>
+                <option value="NM">NM</option>
+                <option value="EX">EX</option>
+                <option value="VG++">VG++</option>
+                <option value="VG+">VG+</option>
+                <option value="VG">VG</option>
+                <option value="VG-">VG-</option>
+                <option value="G+">G+</option>
+                <option value="G">G</option>
+                <option value="F">F</option>
+                <option value="P">P</option>
+              </select>
+
+              <select id="country" name="pressing">
+                <option selected="selected">
+                  Pressing
+                </option>
+                <option value="South Africa">South Africa</option>
+                <option value="UK">UK</option>
+                <option value="USA">USA</option>
+                <option value="German">German</option>
+                <option value="Holland">Holland</option>
+                <option value="France">France</option>
+                <option value="Zimbabwe">Zimbabwe</option>
+                <option value="AUS">AUS</option>
+                <option value="NZ">NZ</option>
+                <option value="EU">EU</option>
+                <option value="Switzerland">Switzerland</option>
+                <option value="Japan">Japan</option>
+                <option value="Brazil">Brazil</option>
+                <option value="Portugal">Portugal</option>
+                <option value="Russian">Russian</option>
+                <option value="Taiwan">Taiwan</option>
+              </select>
+              <input type="text" id="remarksInput" class="recordInput"  placeholder="Remarks..." name="remarks">
+              <input type="text" id="releaseDateInput" class="recordInput"  placeholder="Original Release Date..." name="album_release_date" >
+              <div class="checkbox-container">
+                <label for="onDiscogsInput" class="onDiscogsInputLbl" >On Discogs</label>
+                <input type="checkbox" id="onDiscogsInput" class="discogsCheckbox" name="on_discogs">
+              </div>
+              <input type="url"  id="discogsLinkInput" class="recordInput" placeholder="Discogs Link..." name="discogs_link">
+
+              <div class="buttonContainer">
+                <div><a id="cancel" class="cancelButton">Cancel</a></div>
+                <button type="submit" id="saveRecordBtn" class="saveRecordButton" >Save</button>
+              </div>
+            </form>
+            <!-- New Record Form End -->
+          </div>
+        </div>
+        <!--     End of New Record Modal       -->
+
+
+
+
+
+
+
+
+
+
+
     <!--   Footer   -->
     <footer> <p>&copy; 2020 | Gullian Van Der Walt</p>  </footer>
+<!--
+<script th:inline="javascript" type="text/javascript" th:src="@{script.js}"></script>
+-->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="js/script.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
 
-<script src="/js/script.js"></script>
+         var listRecords = /*[[${listRecords}]]*/;
+    /*]]>*/
+
+    $('#artistFilter').keyup(function(){
+       var value = $(this).val();
+        //Get Filtered Records List
+         var data = FilterFunction(value,listRecords);
+         //Clear table and rebuild with the filtered data
+         rebuildTable(data)
+
+    });
+    //Get the data that matches artist input
+    function FilterFunction(value, data){
+        //Array of FilteredData
+        var filteredData = [];
+        for(var i = 0; i<data.length; i++){
+            value = value.toLowerCase();
+            var artistSearch = data[i].artist.toLowerCase();
+
+            if(artistSearch.includes(value)){
+                filteredData.push(data[i]);
+            }
+        }
+        return filteredData;
+    }
+    //Rebuild the table
+    function rebuildTable(data){
+        var table = document.getElementById('myTable')
+        table.innerHTML = ''
+        for(var i = 0; i < data.length; i++){
+            var row = `<tr>
+                            <td>${data[i].id}</td>
+                            <td>${data[i].artist}</td>
+                            <td>${data[i].album}</td>
+                            <td>${data[i].catalog_number}</td>
+                            <td>${data[i].format}</td>
+                            <td>${data[i].cover_condition}</td>
+                            <td>${data[i].record_condition}</td>
+                            <td>${data[i].pressing}</td>
+                            <td>${data[i].remarks}</td>
+                            <td>${data[i].album_release_date}</td>
+                            <td>${data[i].on_discogs}</td>
+                            <td>${data[i].discogs_link}</td>
+                      </tr>`
+                      table.innerHTML += row
+
+          }
+    }
+</script>
+
+
 </body>
 </html>

@@ -16,6 +16,7 @@ package com.gvdw.RecordCollector.Services;
 import com.gvdw.RecordCollector.Repositories.RecordsRepoisitory;
 import com.gvdw.RecordCollector.Models.Records;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,8 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class RecordsService{
     
     //Inject Record Repo
-    @Autowired
-    RecordsRepoisitory recordsRepo;
+    @Autowired private RecordsRepoisitory recordsRepo;
 
       //Methods
     
@@ -37,4 +37,18 @@ public class RecordsService{
         return recordsRepo.findAll();
     }
     
+    //Save New Country From Country.html Form
+    public void save(Records records){
+        recordsRepo.save(records);
+    }
+
+   //Get Country by id
+    public Optional<Records> findById(Long id){
+        return recordsRepo.findById(id);
+    }
+
+    //Delete Record
+    public void delete(Long id) {
+      recordsRepo.deleteById(id);
+    }
 }

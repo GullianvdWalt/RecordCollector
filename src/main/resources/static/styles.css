@@ -1,0 +1,469 @@
+/*Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&family=Open+Sans:wght@400;700&family=Oswald:wght@400;600&family=Roboto:wght@700&display=swap');
+/* 
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'Oswald', sans-serif;
+  font-family: 'Roboto', sans-serif; */
+
+/* Units
+
+Padding and Margins: em = px/16
+Fonts: em = px/16
+Layouts such as boxes and container = %
+For fixed size: px
+Height and width: e.g. 100vh     
+
+*/ 
+
+/* Common Styling */
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+body{
+    background-color:  #333333;
+    margin: 0; 
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    Align-items: stretch;
+	Justify-content: space-between;
+	Flex-grow: 1;
+
+
+}    
+.nav-bar-top{
+    display: flex;
+    flex-direction:row;
+    Justify-content: space-between;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 5%;
+    Height: 140px;
+}
+
+h1{
+    font-family: 'Oswald', sans-serif;
+    color: #FF4500;
+    font-size: 3em;
+    margin-right: 30%;
+    text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+}
+h2{
+    font-family: 'Oswald', sans-serif;
+    color: #FF4500;
+    font-size: 2.5em;
+    margin-left: 5%;
+    text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+}
+
+.logo-container{
+    margin-right: 1em;
+    margin-left: 1em;
+}
+button{
+    background: #FF4500;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+    width: 6em;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+}
+/* Hover Effect */
+button:hover{
+    background: #434343;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+    color: #FF4500;
+    cursor: pointer;
+}
+
+
+/* Footer Container */
+footer{
+    text-align: center;
+}
+/* Footer Text */
+footer p{
+    font-family: 'Oswald', sans-serif;
+    color: #FF4500;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 2.25em;
+}
+
+/* Index Page */
+.homeNewRecordBtn{
+   height: auto;
+   padding: 0.4em;
+   width: auto;
+}
+
+/* Filter Section */
+.filter-container{
+    display: flex;
+    flex-direction:row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5%;
+	Flex-grow: 1;
+
+}
+.filterInput{
+    height: 2.5em;
+    width: 16%;
+    background-color: #434343;
+    border-radius: 10px;
+    border: 2px solid #FF4500;
+    font-family: 'Oswald', sans-serif;
+    color: #ffffff;
+    font-size: 1.5em;
+    margin-right: 1em;
+    margin-left: 1em;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
+}
+.filterInput::placeholder{
+    font-family: 'Oswald', sans-serif;
+    color: #ffffff;
+    font-size: 24px;
+}
+.filterInput:focus{
+    content: ""; 
+    background-color: #FF4500;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+
+
+/* Table Section Container*/
+.table-section{    
+    padding: 5px;
+    min-height: 40em;
+}
+/* Styling the table */
+table{
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.375em;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-collapse: collapse;
+    height: auto;
+    width: 100%;
+    background-color: #C4C4C4;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+} 
+/* Table Heading */
+th{
+    background-color: #434343;
+    color: #ffffff;
+    font-weight: bold;
+}
+/* Table rows*/
+td, th{
+  text-align: left;
+  padding: 12px 15px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+th:hover, td:hover{
+    cursor: pointer;
+}
+/* Change every other row*/
+tr:nth-child(even){
+    background-color: #DCDCDC;
+    color: #434343;
+}
+
+tr:active{
+    font-weight: bold;
+    color:#FF4500;
+}
+
+/*  Edit Modal */
+.recordEditModal{
+  display: none;
+  position: absolute; 
+  text-align: center;
+  overflow: auto;
+  width: 80%;
+  height: 100%; 
+  left: 10%;
+  top: 0;
+  background-color:  #333333;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.middle{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.model-content{
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+
+}
+
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+.buttonContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.close{
+    background: #FF4500;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+    width: 6em;
+    margin-top: 1em;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+}
+.editSave{
+    background: #FF4500;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+    width: 6em;
+    margin-top: 1em;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+}
+
+/* Button Hover*/
+.editSave:hover, .close:hover{
+    background: #434343;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+    color: #FF4500;
+    cursor: pointer;
+}
+
+h4{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    color: #ffffff;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+Input{
+    text-align: center;
+    height: 2.5em;
+    width: 60%;
+    background-color: #434343;
+    border-radius: 10px;
+    border: 2px solid #FF4500;
+    font-family: 'Oswald', sans-serif;
+    color: #ffffff;
+    font-size: 1.5em;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
+    margin-bottom: 0.5em;
+}
+Input::placeholder{
+    font-family: 'Oswald', sans-serif;
+    color: #C4C4C4;
+    font-size: 1.2em;
+}
+Input:focus{
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+/* New Record Modal */
+.newRecordModal{
+  display: none;
+  position: absolute; 
+  overflow: auto;
+  width: 100%;
+  height: 100%; 
+  left: 0;
+  top: 0;
+  background-color:  #333333;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.new-middle{
+  display: table-cell;
+  vertical-align: middle;
+}
+.model-content-new{
+    text-align: center;
+}
+
+.recordInput{
+    height: 2.5em;
+    width: 60%;
+    background-color: #434343;
+    border-radius: 10px;
+    border: 2px solid #FF4500;
+    font-family: 'Oswald', sans-serif;
+    color: #ffffff;
+    font-size: 1.5em;
+    margin-right: 1em;
+    margin-left: 1em;
+    margin-bottom: 1.2em;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
+}
+.recordInput::placeholder{
+    font-family: 'Oswald', sans-serif;
+    color: #C4C4C4;
+    font-size: 1.2em;
+}
+.recordInput:focus{
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.checkbox-container{
+    display: inline-block;
+    width: 60%;
+    height: 15%;
+    padding-bottom: 20px;
+}
+.onDiscogsInputLbl{
+    font-family: 'Oswald', sans-serif;
+    color: #ffffff;
+    font-size: 1.7em;
+    margin: 0;
+    margin-right: 5%;
+}
+.discogsCheckbox{
+    background-color: #ffffff;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    overflow: hidden;
+}
+/*  Input List    */
+select{
+    height: 2.5em;
+    width: 60%;
+    background-color: #434343;
+    border-radius: 10px;
+    border: 2px solid #FF4500;
+    font-family: 'Oswald', sans-serif;
+    color: #ffffff;
+    font-size: 1.5em;
+    margin-right: 1em;
+    margin-left: 1em;
+    margin-bottom: 1.2em;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
+
+}
+.buttonContainer{
+
+    padding-bottom: 2%;
+}
+.saveRecordButton{
+    background: #FF4500;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+    width: 6em;
+    margin-top: 1em;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+}
+.cancelButton{
+    background: #FF4500;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+    width: 6em;
+    margin-top: 1em;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+
+}
+/* Button Hover*/
+.saveRecordButton:hover, .cancelButton:hover{
+    background: #434343;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+    color: #FF4500;
+    cursor: pointer;
+}
+
+
+
+
+/* Media Queries 
+   Mobile portait (320px to 414px) — For devices with 4" to 6.9" screens.
+   Mobile landscape (568px to 812px) — Same, but landscape.
+   Tablet portait (768px to 834px) — For devices 7" to 10"
+   Tablet landscape (1024px to 1112px) — Ditto, but also 12" tablets on portrait
+   Laptop & desktop displays (1200px+) — Varies a lot, but is usually 1200px and above
+*/
+
+/*1920+ Bigger Screens*/
+
+/* 1024px to 1112px */
+
+/* 768px to 834px */
+
+/* 568px to 812px */
+
+/* 320px to 414px */
+
