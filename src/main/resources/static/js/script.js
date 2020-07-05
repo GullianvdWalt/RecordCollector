@@ -1,4 +1,4 @@
-//Edit Modal
+
 var editModal = document.getElementById("recordEditModal");
 
 var openByID = document.getElementById("open");

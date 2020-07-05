@@ -18,6 +18,7 @@ import com.gvdw.RecordCollector.Models.Records;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +34,8 @@ public class RecordsService{
       //Methods
     
     //List all the products from the record_collection DB
+ 
+
     public List<Records> listAll(){
         return recordsRepo.findAll();
     }

@@ -17,6 +17,7 @@ package com.gvdw.RecordCollector.Repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.gvdw.RecordCollector.Models.Records;
 import java.util.List;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
