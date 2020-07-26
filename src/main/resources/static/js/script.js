@@ -17,12 +17,7 @@ $(document).ready(function() {
 
     $('#cancel').click(function() {
         newModal.style.display = "none";
-    });
-    
-    $("#saveRecordBtn").on
-    
-    
-    
+    });  
 });
 
 
