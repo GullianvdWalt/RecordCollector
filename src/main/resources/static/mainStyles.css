@@ -173,6 +173,7 @@ th{
     color: #ffffff;
     font-weight: bold;
 }
+
 /* Table rows*/
 td, th{
   text-align: left;
@@ -445,7 +446,9 @@ select{
     color: #FF4500;
     cursor: pointer;
 }
-
+.total-records-number{
+    color: #ffffff;
+}
 
 
 

@@ -45,13 +45,14 @@ public class RecordsService{
         recordsRepo.save(records);
     }
 
-   //Get Country by id
-    public Optional<Records> findById(Long id){
-        return recordsRepo.findById(id);
+   //Get Records by id
+    public Records get(Long id){
+        return recordsRepo.findById(id).get();
     }
 
     //Delete Record
     public void delete(Long id) {
       recordsRepo.deleteById(id);
     }
+    
 }

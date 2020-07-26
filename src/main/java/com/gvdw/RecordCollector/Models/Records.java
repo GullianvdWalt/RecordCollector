@@ -42,7 +42,7 @@ public class Records {
     private String record_condition;
     private String pressing;
     private String remarks;
-    private String album_release_date;
+    private String year;
     private boolean on_discogs;
     private String discogs_link;
     

@@ -30,25 +30,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller public class RecordsController {
 
     //Inject Services
     @Autowired private RecordsService recordService;
 
-    @Autowired private SortRepo sortRepository;
-
-//    @RequestMapping(value = {"/", "/index"})
-//    public String showPage(Model model, String artistFilter, @Param("sortField") String sortField,
-//        @Param("sortDir") String sortDir) {
-//       //Get List of Records
-//       List<Records> listRecords = recordService.listAll();
-//       model.addAttribute("listRecords", listRecords);
-//       return "index";
-//    }
-//    
+    @Autowired private SortRepo sortRepository;    
     
-        @GetMapping("/records")
+        @GetMapping("/")
     public String getRecords(@PageableDefault(size = 200, sort = "id") Pageable pageable,
                              Model model){
         
@@ -58,41 +51,36 @@ import java.util.stream.Collectors;
             Sort.Order order = sortOrders.get(0);
             model.addAttribute("sortProperty", order.getProperty());
             model.addAttribute("sortDesc", order.getDirection() == Sort.Direction.DESC);
+            
         }
-        model.addAttribute("page", page);
+        model.addAttribute("page", page);		
+	model.addAttribute("totalPages", page.getTotalPages());
+	model.addAttribute("totalItems", page.getTotalElements());
         return "index";
     }
     
-     
-     //Method to save Country from Country Services which is from Country.html
-    @PostMapping("/records/addNew")
+    @PostMapping("/addNew")
     public String addNew(Records records){
         recordService.save(records);
         
         return "redirect:/";
     }
-    //Find By Record id Method implement Service
-    @RequestMapping("records/findById")
-    @ResponseBody
-    public Optional<Records> findById(Long id){
-       return recordService.findById(id);
-        
-    }
-    
-    //When edit page is opened, submit new data
-    @RequestMapping(value="records/update", method={RequestMethod.PUT, RequestMethod.GET})
-    public String update(Records records){
-       recordService.save(records);
-        return "redirect:/index";
-    }
-    
-    
 
+        //Edit The Products
+    @RequestMapping("/edit/{id}")
+    public ModelAndView showRecordEidtPage(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("edit_record");
+        Records record = recordService.get(id);
+        mav.addObject("record", record);
+        return mav;
+    }
     
-//        //Delete Record
-//    @RequestMapping(value="records/delete", method={RequestMethod.DELETE, RequestMethod.GET})
-//    public String delete(Long id){
-//        recordService.delete(id);
-//        return "redirect:/index";
-//    }
+        //Save Product
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String saveProduct(@ModelAttribute("product") Records record){
+        recordService.save(record);
+        
+        return "redirect:/records";
+    }
+        
 }
