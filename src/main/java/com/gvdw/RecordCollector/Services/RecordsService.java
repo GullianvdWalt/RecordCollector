@@ -45,9 +45,9 @@ public class RecordsService{
         recordsRepo.save(records);
     }
 
-   //Get Records by id
-    public Records get(Long id){
-        return recordsRepo.findById(id).get();
+    // Get Records by id
+    public Optional<Records> findById(Long id){
+        return recordsRepo.findById(id);
     }
 
     //Delete Record

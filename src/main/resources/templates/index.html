@@ -7,7 +7,7 @@
     <title>Keep On Spinning</title>
  
     
-    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
     <!-- Styles-->
     <link rel="stylesheet" th:href="@{mainStyles.css}"></link>
     <link rel="stylesheet" th:href="@{paginationStyles.css}"></link>   
@@ -90,10 +90,10 @@
                             <td class="table-data-cover-condition" th:text="${records.record_condition}">Record Condition</td>
                             <td class="table-data-country" th:text="${records.pressing}">Pressing</td>
                             <td class="table-data-remarks" th:text="${records.remarks}">Remarks</td>
-                            <td class="table-data-release-date" th:text="${records.Year}">Year</td>
+                            <td class="table-data-release-date" th:text="${records.year}">Year</td>
                             <td class="table-data-on-discogs" th:text="${records.on_discogs}">On Discogs </td>
                             <td class="table-data-discogs-link" >  <a th:href="${records.discogs_link}" target="_blank"><img th:src="@{Images/link-icon.jpg}" alt="link-icon" > </a></td>
-                            <td class="edit-button"><a th:href="@{'/records/edit/' + ${records.id}}" id="editButton">Edit</a></td>
+                            <td class="edit-button"><a th:href="@{/findById(id=${records.id})}" id="editButton" >Edit</a></td>
                         </tr>
                     </tbody>
                </table>
@@ -122,25 +122,60 @@
         
         <!--    Edit Record Modal   -->
         <div id="recordEditModal" class="recordEditModal">
-          <div class="middle">
-            <div class="model-content" th:action="@{/records/update}" method="put">
-       
-              <h4 for="id">ID</h4>
-              <input type="text" class="form-control" id="idEdit" name="id" readonly>
-              <h4 for="artist">Artist</h4>
-              <input type="text" class="form-control" id="artistEdit" name="artist">
-              <h4 for="album">Album</h4>
-              <input type="text" class="form-control" id="albumEdit" name="album">
-              <h4 for="catNumber">Catalog Number</h4>
-              <input type="text" class="form-control" id="catNumEdit" name="catNumber" >
-              <h4 for="format">Format</h4>
-              <input type="text" class="form-control" id="formatEdit" name="format">
-              <div class="buttonContainer">
-                <a id="close" class="close">Close</a>
-                <a href="" class="editSave">Save</a>
-              </div>
+            <form class="model-content" th:action="@{/update}" method="put">
+                <div class="edit-form-row">
+                    <label for="idEdit" class="edit-modal-label">ID</label>
+                    <input type="text" class="edit-modal-input" id="idEdit" name="id" readonly>
+                </div>
+                <div class="edit-form-row">
+                    <h4 for="artistEdit" class="edit-modal-label">Artist</h4>
+                    <input type="text" class="edit-modal-input" id="artistEdit" name="artist">
+                </div>
+                <div class="edit-form-row">
+                    <h4 for="albumEdit" class="edit-modal-label">Album</h4>
+                    <input type="text" class="edit-modal-input" id="albumEdit" name="album">
+                </div>
+                <div class="edit-form-row">
+                    <h4 for="catNumEdit" class="edit-modal-label">Catalog Number</h4>
+                    <input type="text" class="edit-modal-input" id="catNumEdit" name="catatalog_number" >
+                </div>
+                <div class="edit-form-row">
+                  <h4 for="formatEdit" class="edit-modal-label">Format</h4>
+                   <input type="text" class="edit-modal-input" id="formatEdit" name="format">
+                </div>
+                <div class="edit-form-row">
+                    <label for="cover_conditionEdit" class="edit-modal-label">Cover Condition</label>
+                    <input type="text" class="edit-modal-input" id="cover_conditionEdit" name="cover_condition" >
+                </div>
+                <div class="edit-form-row">
+                    <h4 for="record_conditionEdit" class="edit-modal-label">Record Condition</h4>
+                    <input type="text" class="edit-modal-input" id="record_conditionEdit" name="record_condition" >
+                </div>
+                <div class="edit-form-row">
+                    <h4 for="pressingEdit" class="edit-modal-label">Pressing</h4>
+                    <input type="text" class="edit-modal-input" id="pressingEdit" name="pressing" >
+                </div>
+                <div class="edit-form-row">
+                    <h4 for="remarksEdit" class="edit-modal-label">Remarks</h4>
+                    <input type="text" class="edit-modal-input" id="remarksEdit" name="remarks" >
+                </div>
+                <div class="edit-form-row">
+                    <h4 for="yearEdit" class="edit-modal-label">Release Date</h4>
+                    <input type="text" class="edit-modal-input" id="yearEdit" name="year" >
+                </div>
+                <div class="edit-form-row">
+                    <h4 for="onDiscogsEdit" class="edit-modal-label">On Discogs</h4>
+                    <input type="text" class="edit-modal-input" id="onDiscogsEdit" name="on_discogs" >
+                </div>
+                <div class="edit-form-row">
+                    <h4 for="discogsLinkEdit" class="edit-modal-label">Discogs Link</h4>
+                    <input type="text" class="edit-modal-input" id="discogsLinkEdit" name="discogs_link" >
+                </div>
+              <div class="edit-modal-button-container">
+                  <button id="close" class="edit-modal-button">close</button>
+                  <button type="submit" id="editSave" class="edit-modal-button">Save</button>
+              </form>
           </div>
-        </div>
         </div>    
         <!-- End of Edit Record Modal  -->
 
@@ -150,10 +185,14 @@
             <h2>New Record</h2>
             <!-- New Record Form Start -->
             <form class="model-content-new" th:action="@{/addNew}" method="post">
-
              <!-- <input type="text" class="id" id="idInput" placeholder="ID..." readonly> -->
-              <input type="text" id="artistInput" class="recordInput"  placeholder="Artist..." required name="artist">
+             <div class="new-record-model-row">
+                <label for="artistInput" class="new-record-modal-label">Artist</label>
+                <input type="text" id="artistInput" class="recordInput"  placeholder="Artist..." required name="artist">
+             </div>
               <input type="text" id="albumInput" class="recordInput"  placeholder="Album..." required name="album">
+             <div class="new-record-model-row">
+               <div class="new-record-model-row">
                   <input type="text" id="catNumInput" class="recordInput"  placeholder="Catalog Number..."  name ="catalog_number" required>
               <select id="format" name="format">
                 <option value="LP">LP</option>
@@ -169,6 +208,7 @@
                 <option value="10-Inch">10-Inch</option>
                 <option value="7-Inch">7-Inch</option>
               </select>
+                      </div>
                 <select id="coverCondigtion" name="cover_condition">
                 <option value="">Cover Condition</option>
                 <option value="M">M</option>
@@ -183,7 +223,7 @@
                 <option value="F">F</option>
                 <option value="P">P</option>
               </select>
-              <select id="recordCondigtion" name="record_condition">
+              <select id="recordCondition" name="record_condition">
                 <option value="">Record Condition</option>
                 <option value="M">M</option>
                 <option value="NM">NM</option>

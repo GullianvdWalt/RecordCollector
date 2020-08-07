@@ -59,28 +59,26 @@ import org.springframework.web.servlet.ModelAndView;
         return "index";
     }
     
+   
+    // Add New Record
     @PostMapping("/addNew")
     public String addNew(Records records){
         recordService.save(records);
-        
         return "redirect:/";
     }
+        //Find Record By Id
+    @RequestMapping("/findById")
+    @ResponseBody
+    public Optional<Records> findById(Long id){
+       return recordService.findById(id);
+    } 
 
-        //Edit The Products
-    @RequestMapping("/edit/{id}")
-    public ModelAndView showRecordEidtPage(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_record");
-        Records record = recordService.get(id);
-        mav.addObject("record", record);
-        return mav;
+        //Edit Record
+    @RequestMapping(value="/update", method={RequestMethod.PUT, RequestMethod.GET})
+    public String update(Records records) {
+        recordService.save(records);
+        return "redirect:/";
     }
     
-        //Save Product
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveProduct(@ModelAttribute("product") Records record){
-        recordService.save(record);
-        
-        return "redirect:/records";
-    }
-        
+
 }

@@ -42,6 +42,7 @@ body{
     justify-content: flex-start;
     margin-bottom: 5%;
     Height: 140px;
+    
 }
 
 h1{
@@ -201,27 +202,25 @@ tr:active{
   position: absolute; 
   text-align: center;
   overflow: auto;
-  width: 80%;
+  top: 0;  
+  width: 100%;
   height: 100%; 
-  left: 10%;
-  top: 0;
   background-color:  #333333;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-.middle{
-  display: table-cell;
-  vertical-align: middle;
+/* Syles For Edit Modal Form Row */
+.edit-form-row{
+    width: 80%;
+    margin: 1rem 10%;
 }
 
 .model-content{
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+  height: 70%;
+  margin: 50% 15%;
 
 }
 
@@ -239,24 +238,15 @@ tr:active{
     justify-content: space-evenly;
 }
 
-.close{
-    background: #FF4500;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 10px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 2em;
-    width: 6em;
-    margin-top: 1em;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    color: #ffffff;
-    text-decoration: none;
-    display: inline-block;
-    border: none;
-    transition: all 0.4s ease 0s;
-    cursor: pointer;
+.edit-modal-button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60%;
+    margin: 1rem 20%;
+    
 }
-.editSave{
+.edit-modal-button{
     background: #FF4500;
     border: 1px solid #000000;
     box-sizing: border-box;
@@ -272,10 +262,12 @@ tr:active{
     border: none;
     transition: all 0.4s ease 0s;
     cursor: pointer;
+    text-transform: uppercase;
+    outline: none;
 }
 
 /* Button Hover*/
-.editSave:hover, .close:hover{
+.edit-modal-button:hover{
     background: #434343;
     letter-spacing: 1px;
     -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
@@ -286,11 +278,15 @@ tr:active{
     cursor: pointer;
 }
 
-h4{
+.edit-modal-label{
     font-family: 'Roboto', sans-serif;
-    font-size: 1.5em;
-    color: #ffffff;
+    font-size: 1.6em;
+    color: #FF4500;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.edit-modal-input{
+    
+    outline: none;
 }
 Input{
     text-align: center;
@@ -328,8 +324,23 @@ Input:focus{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .new-middle{
-  display: table-cell;
-  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+  height: 90%;
+  margin: 10% 15%;
+
+}
+.new-record-model-row{
+    width: 80%;
+    margin: 1rem 10%;
+}
+.new-record-modal-label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6em;
+    color: #FF4500;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .model-content-new{
     text-align: center;
