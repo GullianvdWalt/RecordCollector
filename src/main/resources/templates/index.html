@@ -34,12 +34,12 @@
         <!-- Page Numbers Section -->
 <div class="pagination-div" th:with="sortParam=${sortProperty+','+(sortDesc?'desc':'asc')}">
     <span th:if="${page.hasPrevious()}">
-        <a th:href="@{/records(page=${page.number-1},size=${page.size},sort=${sortParam})}">Previous</a>
+        <a th:href="@{/(page=${page.number-1},size=${page.size},sort=${sortParam})}">Previous</a>
     </span>
     <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
         <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
         <span th:unless="${page.number == i}">
-             <a th:href="@{/records(page=${i},size=${page.size},sort=${sortParam})}">[[${i}+1]]</a>
+             <a th:href="@{/(page=${i},size=${page.size},sort=${sortParam})}">[[${i}+1]]</a>
         </span>
     </th:block>
     <span th:if="${page.hasNext()}">
@@ -124,51 +124,51 @@
         <div id="recordEditModal" class="recordEditModal">
             <form class="model-content" th:action="@{/update}" method="put">
                 <div class="edit-form-row">
-                    <label for="idEdit" class="edit-modal-label">ID</label>
+                    <label for="idEdit" class="edit-modal-label">ID</label><br>
                     <input type="text" class="edit-modal-input" id="idEdit" name="id" readonly>
                 </div>
                 <div class="edit-form-row">
-                    <h4 for="artistEdit" class="edit-modal-label">Artist</h4>
-                    <input type="text" class="edit-modal-input" id="artistEdit" name="artist">
+                    <label for="artistEdit" class="edit-modal-label">Artist</label><br>
+                        <input type="text" class="edit-modal-input" id="artistEdit" name="artist" required>
                 </div>
                 <div class="edit-form-row">
-                    <h4 for="albumEdit" class="edit-modal-label">Album</h4>
-                    <input type="text" class="edit-modal-input" id="albumEdit" name="album">
+                    <label for="albumEdit" class="edit-modal-label">Album</label><br>
+                    <input type="text" class="edit-modal-input" id="albumEdit" name="album" required>
                 </div>
                 <div class="edit-form-row">
-                    <h4 for="catNumEdit" class="edit-modal-label">Catalog Number</h4>
-                    <input type="text" class="edit-modal-input" id="catNumEdit" name="catatalog_number" >
+                    <label for="catNumEdit" class="edit-modal-label">Catalog Number</label><br>
+                    <input type="text" class="edit-modal-input" id="catNumEdit" name="catatalog_number" required>
                 </div>
                 <div class="edit-form-row">
-                  <h4 for="formatEdit" class="edit-modal-label">Format</h4>
+                  <label for="formatEdit" class="edit-modal-label">Format</label><br>
                    <input type="text" class="edit-modal-input" id="formatEdit" name="format">
                 </div>
                 <div class="edit-form-row">
-                    <label for="cover_conditionEdit" class="edit-modal-label">Cover Condition</label>
+                    <label for="cover_conditionEdit" class="edit-modal-label">Cover Condition</label><br><br>
                     <input type="text" class="edit-modal-input" id="cover_conditionEdit" name="cover_condition" >
                 </div>
                 <div class="edit-form-row">
-                    <h4 for="record_conditionEdit" class="edit-modal-label">Record Condition</h4>
+                    <label for="record_conditionEdit" class="edit-modal-label">Record Condition</label><br>
                     <input type="text" class="edit-modal-input" id="record_conditionEdit" name="record_condition" >
                 </div>
                 <div class="edit-form-row">
-                    <h4 for="pressingEdit" class="edit-modal-label">Pressing</h4>
+                    <label for="pressingEdit" class="edit-modal-label">Pressing</label><br>
                     <input type="text" class="edit-modal-input" id="pressingEdit" name="pressing" >
                 </div>
                 <div class="edit-form-row">
-                    <h4 for="remarksEdit" class="edit-modal-label">Remarks</h4>
+                    <label for="remarksEdit" class="edit-modal-label">Remarks</label><br>
                     <input type="text" class="edit-modal-input" id="remarksEdit" name="remarks" >
                 </div>
                 <div class="edit-form-row">
-                    <h4 for="yearEdit" class="edit-modal-label">Release Date</h4>
+                    <label for="yearEdit" class="edit-modal-label">Release Date</label><br>
                     <input type="text" class="edit-modal-input" id="yearEdit" name="year" >
                 </div>
                 <div class="edit-form-row">
-                    <h4 for="onDiscogsEdit" class="edit-modal-label">On Discogs</h4>
+                    <label for="onDiscogsEdit" class="edit-modal-label">On Discogs</label><br>
                     <input type="text" class="edit-modal-input" id="onDiscogsEdit" name="on_discogs" >
                 </div>
                 <div class="edit-form-row">
-                    <h4 for="discogsLinkEdit" class="edit-modal-label">Discogs Link</h4>
+                    <label for="discogsLinkEdit" class="edit-modal-label">Discogs Link</label><br>
                     <input type="text" class="edit-modal-input" id="discogsLinkEdit" name="discogs_link" >
                 </div>
               <div class="edit-modal-button-container">
@@ -187,13 +187,16 @@
             <form class="model-content-new" th:action="@{/addNew}" method="post">
              <!-- <input type="text" class="id" id="idInput" placeholder="ID..." readonly> -->
              <div class="new-record-model-row">
-                <label for="artistInput" class="new-record-modal-label">Artist</label>
-                <input type="text" id="artistInput" class="recordInput"  placeholder="Artist..." required name="artist">
+                 <label for="artistInput" class="new-record-modal-label">Artist</label><br>
+                <input type="text" id="artistInput" class="recordInput"  placeholder="Artist..." name="artist" required>
              </div>
-              <input type="text" id="albumInput" class="recordInput"  placeholder="Album..." required name="album">
              <div class="new-record-model-row">
-               <div class="new-record-model-row">
+                  <label for="albumInput" class="new-record-modal-label">Album</label><br>
+              <input type="text" id="albumInput" class="recordInput"  placeholder="Album..." name="album" required>
+             </div>
+            <div class="new-record-model-row">
                   <input type="text" id="catNumInput" class="recordInput"  placeholder="Catalog Number..."  name ="catalog_number" required>
+            </div>
               <select id="format" name="format">
                 <option value="LP">LP</option>
                 <option value="LP, Gatefold">LP, Gatefold</option>
@@ -208,7 +211,7 @@
                 <option value="10-Inch">10-Inch</option>
                 <option value="7-Inch">7-Inch</option>
               </select>
-                      </div>
+                     
                 <select id="coverCondigtion" name="cover_condition">
                 <option value="">Cover Condition</option>
                 <option value="M">M</option>

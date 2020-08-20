@@ -10,7 +10,8 @@ var editModal = document.getElementById("recordEditModal");
 $(document).ready(function() {
 
     $('#newRecordBtn').click(function() {
-         newModal.style.display = "block";
+         newModal.style.display = "flex";
+        
     });
 
 });
@@ -30,7 +31,7 @@ $(document).ready(function(){
     
     $("table #editButton").click(function(){
             editModal.style.display = "flex";
-            
+             window.location.hash = '#recordEditModal';
                  event.preventDefault();
        // URL for EDIT /findByID/?id=1
        //Current Button (edit)

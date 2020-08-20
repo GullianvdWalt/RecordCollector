@@ -42,7 +42,7 @@ import org.springframework.web.servlet.ModelAndView;
     @Autowired private SortRepo sortRepository;    
     
         @GetMapping("/")
-    public String getRecords(@PageableDefault(size = 200, sort = "id") Pageable pageable,
+         public String getRecords(@PageableDefault(size = 200, sort = "id") Pageable pageable,
                              Model model){
         
         Page<Records> page = sortRepository.findAll(pageable);

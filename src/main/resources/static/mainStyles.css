@@ -407,11 +407,17 @@ select{
     margin-left: 1em;
     margin-bottom: 1.2em;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
-
+    outline: none;
+}
+option{
+    outline: none;
 }
 .buttonContainer{
 
     padding-bottom: 2%;
+}
+button{
+ outline: none;   
 }
 .saveRecordButton{
     background: #FF4500;
