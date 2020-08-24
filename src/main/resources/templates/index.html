@@ -1,40 +1,47 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-    <title>Keep On Spinning</title>
- 
-    
-    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
-    <!-- Styles-->
-    <link rel="stylesheet" th:href="@{mainStyles.css}"></link>
-    <link rel="stylesheet" th:href="@{paginationStyles.css}"></link>   
-    
+<head>
+  <meta charset="UTF-8" />
+
+  <title>Keep On Spinning</title>
+  <!-- Icon -->
+  <link rel="icon" href="Images/icon.ico">
+  <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+  <!-- Styles-->
+  <link rel="stylesheet" th:href="@{mainStyles.css}">
+  </link>
+  <link rel="stylesheet" th:href="@{paginationStyles.css}">
+  </link>
+
 
 </head>
+
 <body>
 
-        <!---       Top Navbar Container           -->
-        <div class="nav-bar-top">
+  <!---       Top Navbar Container           -->
+  <div class="nav-bar-top">
 
-            <!-- Record Logo Icon -->
-        <div class="logo-container"><img th:src="@{Images/record8.png}" alt="record_logo" id="logo-icon" class="logo-icon"/></div> 
-
-            <!-- Page Heading Top -->
-            <h1>Keep On Spinning</h1>
-
-            <!--- Add New Record Button -->
-            <button type="button" id="newRecordBtn" class="homeNewRecordBtn" data-target="#newRecordModal">Add Record</button>
-
+    <div class="logo-container">
+      <!-- Record Logo Icon -->
+      <img th:src="@{Images/record8.png}" alt="record_logo" id="logo-icon" class="logo-icon" />
+      <!-- Page Heading Top -->
+      <h1>Keep On Spinning</h1>
     </div>
-        <!-- End of Top Nav Bar -->
-        
-        <!-- Page Numbers Section -->
-<div class="pagination-div" th:with="sortParam=${sortProperty+','+(sortDesc?'desc':'asc')}">
+
+    <div class="button-container">
+      <!--- Add New Record Button -->
+      <button type="button" id="newRecordBtn" class="homeNewRecordBtn" data-target="#newRecordModal">Add Record</button>
+      <button class="button">Expenses</button>
+    </div>
+
+  </div>
+  <!-- End of Top Nav Bar -->
+
+  <!-- Page Numbers Section -->
+  <div class="pagination-div" th:with="sortParam=${sortProperty+','+(sortDesc?'desc':'asc')}">
     <span th:if="${page.hasPrevious()}">
-        <a th:href="@{/(page=${page.number-1},size=${page.size},sort=${sortParam})}">Previous</a>
+      <a th:href="@{/(page=${page.number-1},size=${page.size},sort=${sortParam})}">Previous</a>
     </span>
     <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
         <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
@@ -46,7 +53,7 @@
         <a th:href="@{/(page=${page.number+1},size=${page.size},sort=${sortParam})}">Next</a>
     </span>
 </div>
-        
+
         <!-- Filter Section -->
         <div class="filter-container">
              <!-- Filter Icon -->
@@ -78,7 +85,7 @@
                        <th class="table-head" id="table-head-discogs-link" data-sort-prop="discogs_link">Discogs Link</th>
                        <th class="table-head" id="table-head-actions">Actions</th>
                    </tr>
-               </thead>   
+               </thead>
                     <tbody>         <!--listRecords-->
                         <tr th:each="records:${page.content}">
                             <td class="table-data-artist" th:text="${records.id}">ID</td>
@@ -93,33 +100,29 @@
                             <td class="table-data-release-date" th:text="${records.year}">Year</td>
                             <td class="table-data-on-discogs" th:text="${records.on_discogs}">On Discogs </td>
                             <td class="table-data-discogs-link" >  <a th:href="${records.discogs_link}" target="_blank"><img th:src="@{Images/link-icon.jpg}" alt="link-icon" > </a></td>
-                            <td class="edit-button"><a th:href="@{/findById(id=${records.id})}" id="editButton" >Edit</a></td>
+                            <td class="edit-button"><a th:href="@{/findById(id=${records.id})}" id="editButton" class="edit" title="edit"><img th:src="@{Images/edit.png}" class="edit-icon" alt="Edit"></a></td>
                         </tr>
                     </tbody>
                </table>
         </div>
         <!-- End of Records Table -->
-        
+
         <!-- Page Numbers Section -->
-        <div class="pagination-div" th:with="sortParam=${sortProperty+','+(sortDesc?'desc':'asc')}">
-            <div class="total-records-number" th:if="${totalPages > 1}">
-		Total Records: [[${totalItems}]]
-		&nbsp;&nbsp;&nbsp;
-            </div>
-            <span th:if="${page.hasPrevious()}">
-                <a th:href="@{/records(page=${page.number-1},size=${page.size},sort=${sortParam})}">Previous</a>
-            </span>
-            <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
-                <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
-                <span th:unless="${page.number == i}">
-                     <a th:href="@{/records(page=${i},size=${page.size},sort=${sortParam})}">[[${i}+1]]</a>
-                </span>
-            </th:block>
-            <span th:if="${page.hasNext()}">
-                <a th:href="@{/records(page=${page.number+1},size=${page.size},sort=${sortParam})}">Next</a>
-            </span>
-        </div>
-        
+  <!-- Page Numbers Section -->
+  <div class="pagination-div" th:with="sortParam=${sortProperty+','+(sortDesc?'desc':'asc')}">
+    <span th:if="${page.hasPrevious()}">
+      <a th:href="@{/(page=${page.number-1},size=${page.size},sort=${sortParam})}">Previous</a>
+    </span>
+    <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+        <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
+        <span th:unless="${page.number == i}">
+             <a th:href="@{/(page=${i},size=${page.size},sort=${sortParam})}">[[${i}+1]]</a>
+        </span>
+    </th:block>
+    <span th:if="${page.hasNext()}">
+        <a th:href="@{/(page=${page.number+1},size=${page.size},sort=${sortParam})}">Next</a>
+    </span>
+</div>
         <!--    Edit Record Modal   -->
         <div id="recordEditModal" class="recordEditModal">
             <form class="model-content" th:action="@{/update}" method="put">
@@ -176,103 +179,135 @@
                   <button type="submit" id="editSave" class="edit-modal-button">Save</button>
               </form>
           </div>
-        </div>    
+        </div>
         <!-- End of Edit Record Modal  -->
 
         <!--     New Record Modal       -->
         <div id="newRecordModal" class="newRecordModal">
           <div class="new-middle">
-            <h2>New Record</h2>
+            <div class="heading-container">
+                <h2>New Record</h2>
+            </div>
             <!-- New Record Form Start -->
             <form class="model-content-new" th:action="@{/addNew}" method="post">
              <!-- <input type="text" class="id" id="idInput" placeholder="ID..." readonly> -->
-             <div class="new-record-model-row">
-                 <label for="artistInput" class="new-record-modal-label">Artist</label><br>
-                <input type="text" id="artistInput" class="recordInput"  placeholder="Artist..." name="artist" required>
-             </div>
-             <div class="new-record-model-row">
-                  <label for="albumInput" class="new-record-modal-label">Album</label><br>
-              <input type="text" id="albumInput" class="recordInput"  placeholder="Album..." name="album" required>
-             </div>
-            <div class="new-record-model-row">
-                  <input type="text" id="catNumInput" class="recordInput"  placeholder="Catalog Number..."  name ="catalog_number" required>
-            </div>
-              <select id="format" name="format">
-                <option value="LP">LP</option>
-                <option value="LP, Gatefold">LP, Gatefold</option>
-                <option value="2LP">2LP</option>
-                <option value="2LP, Gatefold">2LP, Gatefold</option>
-                <option value="3LP">3LP</option>
-                <option value="3LP, Gatefold">3LP, Gatefold</option>
-                <option value="3LP, Trifold">3LP, Trifold</option>
-                <option value="4LP">4LP</option>
-                <option value="4LP">4LP</option>
-                <option value="Boxset">Boxset</option>
-                <option value="10-Inch">10-Inch</option>
-                <option value="7-Inch">7-Inch</option>
-              </select>
-                     
-                <select id="coverCondigtion" name="cover_condition">
-                <option value="">Cover Condition</option>
-                <option value="M">M</option>
-                <option value="NM">NM</option>
-                <option value="EX">EX</option>
-                <option value="VG++">VG++</option>
-                <option value="VG+">VG+</option>
-                <option value="VG">VG</option>
-                <option value="VG-">VG-</option>
-                <option value="G+">G+</option>
-                <option value="G">G</option>
-                <option value="F">F</option>
-                <option value="P">P</option>
-              </select>
-              <select id="recordCondition" name="record_condition">
-                <option value="">Record Condition</option>
-                <option value="M">M</option>
-                <option value="NM">NM</option>
-                <option value="EX">EX</option>
-                <option value="VG++">VG++</option>
-                <option value="VG+">VG+</option>
-                <option value="VG">VG</option>
-                <option value="VG-">VG-</option>
-                <option value="G+">G+</option>
-                <option value="G">G</option>
-                <option value="F">F</option>
-                <option value="P">P</option>
-              </select>
 
-              <select id="country" name="pressing">
-                <option selected="selected">
-                  Pressing
-                </option>
-                <option value="South Africa">South Africa</option>
-                <option value="UK">UK</option>
-                <option value="USA">USA</option>
-                <option value="German">German</option>
-                <option value="Holland">Holland</option>
-                <option value="France">France</option>
-                <option value="Zimbabwe">Zimbabwe</option>
-                <option value="AUS">AUS</option>
-                <option value="NZ">NZ</option>
-                <option value="EU">EU</option>
-                <option value="Switzerland">Switzerland</option>
-                <option value="Japan">Japan</option>
-                <option value="Brazil">Brazil</option>
-                <option value="Portugal">Portugal</option>
-                <option value="Russian">Russian</option>
-                <option value="Taiwan">Taiwan</option>
-              </select>
-              <input type="text" id="remarksInput" class="recordInput"  placeholder="Remarks..." name="remarks">
-              <input type="text" id="releaseDateInput" class="recordInput"  placeholder="Original Release Date..." name="album_release_date" >
+            <!-- Form Grourp Left Start -->
+            <div class="form-group">
+              <div class="new-record-model-row">
+                  <label for="artistInput" class="new-record-modal-label">Artist</label><br>
+                  <input type="text" id="artistInput" class="recordInput" name="artist" required>
+              </div>
+              <div class="new-record-model-row">
+                    <label for="albumInput" class="new-record-modal-label">Album</label><br>
+                <input type="text" id="albumInput" class="recordInput" name="album" required>
+              </div>
+              <div class="new-record-model-row">
+                    <label for="catNumInput"  class="new-record-modal-label">Catalog Number</label>
+                    <input type="text" id="catNumInput" class="recordInput" name ="catalog_number" required>
+              </div>
+              <div class="new-record-model-row-select">
+                <label for="format"  class="new-record-modal-label">Format</label>
+                <select id="format" name="format">
+                  <option value="LP">LP</option>
+                  <option value="LP, Gatefold">LP, Gatefold</option>
+                  <option value="2LP">2LP</option>
+                  <option value="2LP, Gatefold">2LP, Gatefold</option>
+                  <option value="3LP">3LP</option>
+                  <option value="3LP, Gatefold">3LP, Gatefold</option>
+                  <option value="3LP, Trifold">3LP, Trifold</option>
+                  <option value="4LP">4LP</option>
+                  <option value="4LP">4LP</option>
+                  <option value="Boxset">Boxset</option>
+                  <option value="10-Inch">10-Inch</option>
+                  <option value="7-Inch">7-Inch</option>
+                </select>
+              </div>
+              <div class="new-record-model-row-select">
+                  <label for="coverCondition"  class="new-record-modal-label">Cover Condition</label>
+                <select id="coverCondition" name="cover_condition">
+                  <option value="">Cover Condition</option>
+                  <option value="M">M</option>
+                  <option value="NM">NM</option>
+                  <option value="EX">EX</option>
+                  <option value="VG++">VG++</option>
+                  <option value="VG+">VG+</option>
+                  <option value="VG">VG</option>
+                  <option value="VG-">VG-</option>
+                  <option value="G+">G+</option>
+                  <option value="G">G</option>
+                  <option value="F">F</option>
+                  <option value="P">P</option>
+                  <option value="No Cover">No Cover</option>
+                </select>
+              </div>
+              <div class="new-record-model-row-select">
+                  <label for="recordCondition"  class="new-record-modal-label">Record Condition</label>
+                  <select id="recordCondition" name="record_condition">
+                    <option value="">Record Condition</option>
+                    <option value="M">M</option>
+                    <option value="NM">NM</option>
+                    <option value="EX">EX</option>
+                    <option value="VG++">VG++</option>
+                    <option value="VG+">VG+</option>
+                    <option value="VG">VG</option>
+                    <option value="VG-">VG-</option>
+                    <option value="G+">G+</option>
+                    <option value="G">G</option>
+                    <option value="F">F</option>
+                    <option value="P">P</option>
+                  </select>
+              </div>
+              <div class="new-record-model-row-select">
+                  <label for="country"  class="new-record-modal-label">Country Pressing</label>
+                  <select id="country" name="pressing">
+                    <option selected="selected">
+                      Pressing
+                    </option>
+                    <option value="South Africa">South Africa</option>
+                    <option value="UK">UK</option>
+                    <option value="USA">USA</option>
+                    <option value="German">German</option>
+                    <option value="Holland">Holland</option>
+                    <option value="France">France</option>
+                    <option value="Zimbabwe">Zimbabwe</option>
+                    <option value="AUS">AUS</option>
+                    <option value="NZ">NZ</option>
+                    <option value="EU">EU</option>
+                    <option value="Switzerland">Switzerland</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Portugal">Portugal</option>
+                    <option value="Russian">Russian</option>
+                    <option value="Taiwan">Taiwan</option>
+                  </select>
+              </div>
+<!-- End of Form-group left -->
+
+<!-- Form Grourp Right Start -->
+            </div>
+
+            <div class="form-group">
+              <div class="new-record-model-row">
+                <label for="remarksInput"  class="new-record-modal-label">Remarks</label>
+                <input type="text" id="remarksInput" class="recordInput" name="remarks">
+              </div>
+              <div class="new-record-model-row">
+                <label for="releaseDateInput" class="new-record-modal-label">Release Date</label>
+                <input type="text" id="releaseDateInput" class="recordInput" name="album_release_date" >
+              </div>
               <div class="checkbox-container">
                 <label for="onDiscogsInput" class="onDiscogsInputLbl" >On Discogs</label>
                 <input type="checkbox" id="onDiscogsInput" class="discogsCheckbox" name="on_discogs">
               </div>
-              <input type="url"  id="discogsLinkInput" class="recordInput" placeholder="Discogs Link..." name="discogs_link">
-
+              <div class="new-record-model-row">
+                <label for="discogsLinkInput" class="new-record-modal-label">Release Date</label>
+                <input type="url"  id="discogsLinkInput" class="recordInput" name="discogs_link">
+              </div>
+            </div>
               <div class="buttonContainer">
-                <div><a id="cancel" class="cancelButton">Cancel</a></div>
-                <button type="submit" id="saveRecordBtn" class="saveRecordButton" >Save</button>
+                <button id="cancel" class="buttons">Cancel</button>
+                <button type="submit" id="saveRecordBtn" class="buttons" >Save</button>
               </div>
             </form>
             <!-- New Record Form End -->
@@ -285,78 +320,78 @@
     <footer> <p>&copy; 2020 | Gullian Van Der Walt</p>  </footer>
 
         <!-- jQuery -->
-        
+
   <script th:src="@{js/script.js}" src="js/script.js"></script>
   <!-- nice scroll -->
   <script src="js/jquery.scrollTo.min.js"></script>
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
     <!-- Sorting -->
     <script th:inline="javascript">
-        
-        //Thymlead to JS Variables
-            /*<![CDATA[*/
-                var sortProperty = /*[[${sortProperty}]]*/ null;
-                var sortDesc = /*[[${sortDesc}]]*/ null;
-                var currentPage = /*[[${page.number}]]*/ 0;
-                var pageSize =/*[[${page.size}]]*/ 0;
-            /*]]>*/
-        
-        $(document).ready(function(){
-         //show up/down arrows
-        $("table#myTable thead th").each(function(){
-            var head = $(this);
-                if(head.attr('data-sort-prop')==sortProperty){
-                head.append(sortDesc?'▾':'▴');
-            }
+
+      //Thymlead to JS Variables
+      /*<![CDATA[*/
+      var sortProperty = /*[[${sortProperty}]]*/ null;
+      var sortDesc = /*[[${sortDesc}]]*/ null;
+      var currentPage = /*[[${page.number}]]*/ 0;
+      var pageSize =/*[[${page.size}]]*/ 0;
+      /*]]>*/
+
+      $(document).ready(function () {
+        //show up/down arrows
+        $("table#myTable thead th").each(function () {
+          var head = $(this);
+          if (head.attr('data-sort-prop') == sortProperty) {
+            head.append(sortDesc ? '▾' : '▴');
+          }
         });
-        
-     //set click action, reload page on clicking with all query params
-     $("table#myTable thead th").click(function() {
-      var headerSortPropName = $(this).attr("data-sort-prop");
-      if(headerSortPropName==sortProperty){
-          window.location.href = window.location.pathname+
-          '?page='+currentPage+'&size='+pageSize+'&sort='+ headerSortPropName+','+
-          (sortDesc?'asc':'desc');
-      }else{
-           window.location.href = window.location.pathname+
-          '?page='+currentPage+'&size='+pageSize+'&sort='+ headerSortPropName+',asc';
-      }
+
+        //set click action, reload page on clicking with all query params
+        $("table#myTable thead th").click(function () {
+          var headerSortPropName = $(this).attr("data-sort-prop");
+          if (headerSortPropName == sortProperty) {
+            window.location.href = window.location.pathname +
+              '?page=' + currentPage + '&size=' + pageSize + '&sort=' + headerSortPropName + ',' +
+              (sortDesc ? 'asc' : 'desc');
+          } else {
+            window.location.href = window.location.pathname +
+              '?page=' + currentPage + '&size=' + pageSize + '&sort=' + headerSortPropName + ',asc';
+          }
+        });
       });
-    });
-        /*<![CDATA[*/
+      /*<![CDATA[*/
 
-             var listRecords = /*[[${listRecords}]]*/;
-             
-        /*]]>*/
+      var listRecords = /*[[${listRecords}]]*/;
 
-        $('#artistFilter').keyup(function(){
-           var value = $(this).val();
-            //Get Filtered Records List
-             var data = FilterFunction(value,listRecords);
-             //Clear table and rebuild with the filtered data
-             rebuildTable(data)
+      /*]]>*/
 
-        });
-        //Get the data that matches artist input
-        function FilterFunction(value, data){
-            //Array of FilteredData
-            var filteredData = [];
-            for(var i = 0; i<data.length; i++){
-                value = value.toLowerCase();
-                var artistSearch = data[i].artist.toLowerCase();
+      $('#artistFilter').keyup(function () {
+        var value = $(this).val();
+        //Get Filtered Records List
+        var data = FilterFunction(value, listRecords);
+        //Clear table and rebuild with the filtered data
+        rebuildTable(data)
 
-                if(artistSearch.includes(value)){
-                    filteredData.push(data[i]);
-                }
-            }
-            return filteredData;
+      });
+      //Get the data that matches artist input
+      function FilterFunction(value, data) {
+        //Array of FilteredData
+        var filteredData = [];
+        for (var i = 0; i < data.length; i++) {
+          value = value.toLowerCase();
+          var artistSearch = data[i].artist.toLowerCase();
+
+          if (artistSearch.includes(value)) {
+            filteredData.push(data[i]);
+          }
         }
-        //Rebuild the table
-        function rebuildTable(data){
-            var table = document.getElementById('myTable')
-            table.innerHTML = ''
-            for(var i = 0; i < data.length; i++){
-                var row = `<tr>
+        return filteredData;
+      }
+      //Rebuild the table
+      function rebuildTable(data) {
+        var table = document.getElementById('myTable')
+        table.innerHTML = ''
+        for (var i = 0; i < data.length; i++) {
+          var row = `<tr>
                                 <td>${data[i].id}</td>
                                 <td>${data[i].artist}</td>
                                 <td>${data[i].album}</td>
@@ -370,10 +405,10 @@
                                 <td>${data[i].on_discogs}</td>
                                 <td>${data[i].discogs_link}</td>
                           </tr>`
-                          table.innerHTML += row
+          table.innerHTML += row
 
-              }
         }
- </script>
+      }
+    </script>
 </body>
 </html>
