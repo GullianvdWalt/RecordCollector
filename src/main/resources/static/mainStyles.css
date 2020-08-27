@@ -164,7 +164,12 @@ footer p {
   height: 70px;
   vertical-align: middle;
 }
-
+.row-count-container {
+  width: 100%;
+  padding: 1rem;
+  color: #ffffff;
+  text-align: center;
+}
 /* Table Section Container*/
 .table-section {
   padding: 5px;
@@ -195,9 +200,9 @@ td,
 th {
   text-align: left;
   padding: 12px 15px;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.edit-icon {
+.edit-icon,
+.delete-icon {
   width: 35px;
   height: 35px;
 }
@@ -406,17 +411,14 @@ Input:focus {
 
 /*  Checkbox */
 .discogsCheckbox {
-  position: relative;
   width: 50px;
   height: 50px;
-  -webkit-appearance: none;
-  outline: none;
+  /*  -webkit-appearance: none;
   transition: 0.5s;
   padding-left: 5px;
-  cursor: pointer;
+  cursor: pointer;*/
 }
-
-.discogsCheckboxs:hover {
+.discogsCheckbox:hover {
   cursor: pointer;
 }
 .recordInput {
@@ -428,7 +430,7 @@ Input:focus {
   border: 2px solid #ff4500;
   font-family: 'Oswald', sans-serif;
   color: #ff4500;
-  font-size: 18px;
+  font-size: 20px;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
   outline: none;
 }

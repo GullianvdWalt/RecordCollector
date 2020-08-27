@@ -38,7 +38,7 @@
   </div>
   <!-- End of Top Nav Bar -->
 
-  <!-- Page Numbers Section -->
+  <!-- Page Numbers Section Top -->
   <div class="pagination-div" th:with="sortParam=${sortProperty+','+(sortDesc?'desc':'asc')}">
     <span th:if="${page.hasPrevious()}">
       <a th:href="@{/(page=${page.number-1},size=${page.size},sort=${sortParam})}">Previous</a>
@@ -65,7 +65,9 @@
                 <input type="text" id="countryFilter"  class="filterInput"  placeholder="Filter by Country..." >
         </div>
         <!-- End of Filter Section  -->
-
+        <div class="row-count-container">
+            <h3 class="row-count">Total Records: [[${totalItems}]] </h3>
+          </div>
         <!-- Records Table -->
         <div class="table-section">
             <table id="myTable" class="myTable">
@@ -83,7 +85,7 @@
                        <th class="table-head" id="table-head-release-date" data-sort-prop="year" title="Sort By Year">Year</th>
                        <th class="table-head" id="table-head-on-discogs" data-sort-prop="on_discogs">On Discogs</th>
                        <th class="table-head" id="table-head-discogs-link" data-sort-prop="discogs_link">Discogs Link</th>
-                       <th class="table-head" id="table-head-actions">Actions</th>
+                       <th class="table-head" id="table-head-actions" colspan="2">Actions</th>
                    </tr>
                </thead>
                     <tbody>         <!--listRecords-->
@@ -101,13 +103,14 @@
                             <td class="table-data-on-discogs" th:text="${records.on_discogs}">On Discogs </td>
                             <td class="table-data-discogs-link" >  <a th:href="${records.discogs_link}" target="_blank"><img th:src="@{Images/link-icon.jpg}" alt="link-icon" > </a></td>
                             <td class="edit-button"><a th:href="@{/findById(id=${records.id})}" id="editButton" class="edit" title="edit"><img th:src="@{Images/edit.png}" class="edit-icon" alt="Edit"></a></td>
+                            <td class="delete-button"><a th:href="@{/findById(id=${records.id})}" id="deleteButton" class="delete" title="delete"><img th:src="@{Images/delete.png}" class="delete-icon" alt="Delete"></a></td>
                         </tr>
                     </tbody>
                </table>
         </div>
         <!-- End of Records Table -->
 
-        <!-- Page Numbers Section -->
+        <!-- Page Numbers Section Bottom -->
   <!-- Page Numbers Section -->
   <div class="pagination-div" th:with="sortParam=${sortProperty+','+(sortDesc?'desc':'asc')}">
     <span th:if="${page.hasPrevious()}">
@@ -301,7 +304,7 @@
                 <input type="checkbox" id="onDiscogsInput" class="discogsCheckbox" name="on_discogs">
               </div>
               <div class="new-record-model-row">
-                <label for="discogsLinkInput" class="new-record-modal-label">Release Date</label>
+                <label for="discogsLinkInput" class="new-record-modal-label">Discogs Link</label>
                 <input type="url"  id="discogsLinkInput" class="recordInput" name="discogs_link">
               </div>
             </div>
@@ -328,12 +331,14 @@
     <!-- Sorting -->
     <script th:inline="javascript">
 
+
       //Thymlead to JS Variables
       /*<![CDATA[*/
       var sortProperty = /*[[${sortProperty}]]*/ null;
       var sortDesc = /*[[${sortDesc}]]*/ null;
       var currentPage = /*[[${page.number}]]*/ 0;
       var pageSize =/*[[${page.size}]]*/ 0;
+
       /*]]>*/
 
       $(document).ready(function () {
@@ -357,6 +362,8 @@
               '?page=' + currentPage + '&size=' + pageSize + '&sort=' + headerSortPropName + ',asc';
           }
         });
+
+
       });
       /*<![CDATA[*/
 
