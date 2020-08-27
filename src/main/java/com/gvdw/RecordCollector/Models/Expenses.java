@@ -5,10 +5,30 @@
  */
 package com.gvdw.RecordCollector.Models;
 
-/**
- *
- * @author Gullian
- */
+import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "vinyl_records_expenses")
+@Getter
+@Setter
+@NoArgsConstructor    
+@AllArgsConstructor 
 public class Expenses {
-    
+        //Variables
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Date date;
+    private String seller;
+    private String description;
+    private int amount;
 }

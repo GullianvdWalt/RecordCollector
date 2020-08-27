@@ -103,7 +103,7 @@
                             <td class="table-data-on-discogs" th:text="${records.on_discogs}">On Discogs </td>
                             <td class="table-data-discogs-link" >  <a th:href="${records.discogs_link}" target="_blank"><img th:src="@{Images/link-icon.jpg}" alt="link-icon" > </a></td>
                             <td class="edit-button"><a th:href="@{/findById(id=${records.id})}" id="editButton" class="edit" title="edit"><img th:src="@{Images/edit.png}" class="edit-icon" alt="Edit"></a></td>
-                            <td class="delete-button"><a th:href="@{/findById(id=${records.id})}" id="deleteButton" class="delete" title="delete"><img th:src="@{Images/delete.png}" class="delete-icon" alt="Delete"></a></td>
+                            <td class="delete-button"><a th:href="@{/delete/(id=${records.id})}" id="deleteButton" class="delete" title="delete"><img th:src="@{Images/delete.png}" class="delete-icon" alt="Delete"></a></td>
                         </tr>
                     </tbody>
                </table>
@@ -128,6 +128,9 @@
 </div>
         <!--    Edit Record Modal   -->
         <div id="recordEditModal" class="recordEditModal">
+            <div class="heading-container">
+                <h2>Edit Record</h2>
+            </div>
             <form class="model-content" th:action="@{/update}" method="put">
                 <div class="edit-form-row">
                     <label for="idEdit" class="edit-modal-label">ID</label><br>
@@ -171,7 +174,7 @@
                 </div>
                 <div class="edit-form-row">
                     <label for="onDiscogsEdit" class="edit-modal-label">On Discogs</label><br>
-                    <input type="text" class="edit-modal-input" id="onDiscogsEdit" name="on_discogs" >
+                    <input type="checkbox" class="discogsCheckbox" id="onDiscogsEdit" name="on_discogs" >
                 </div>
                 <div class="edit-form-row">
                     <label for="discogsLinkEdit" class="edit-modal-label">Discogs Link</label><br>
@@ -318,6 +321,18 @@
         </div>
         <!--     End of New Record Modal       -->
 
+      <!-- Delete Modal -->
+      <div class="delete-modal" id="deleteModal">
+        <div class="delete-modal-content">
+          <div class="delete-modal-heading">
+              <h3>Confirm Delete</h3>
+          </div>
+          <div class="delete-button-container">
+            <button class="buttons" id="cancel">Cancel</button>
+            <a class="buttons" id="confirmDelete" href="">Yes, Delete</a>
+          </div>
+        </div>
+      </div>
 
     <!--   Footer   -->
     <footer> <p>&copy; 2020 | Gullian Van Der Walt</p>  </footer>

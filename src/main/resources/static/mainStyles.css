@@ -225,27 +225,24 @@ tr:active {
 .recordEditModal {
   display: none;
   position: absolute;
-  text-align: center;
   overflow: auto;
+  width: 80%;
+  margin: 0 10%;
+  left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #333333;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+  background-color: rgb(51, 51, 51);
 }
 /* Syles For Edit Modal Form Row */
 .edit-form-row {
-  width: 80%;
-  margin: 1rem 10%;
+  width: 100%;
 }
-
 .model-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 70%;
-  height: 70%;
-  margin: 50% 15%;
+  width: 100%;
+  text-align: center;
 }
 
 @-webkit-keyframes animatetop {
@@ -320,12 +317,9 @@ tr:active {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .edit-modal-input {
-  outline: none;
-}
-Input {
   text-align: center;
   height: 2.5em;
-  width: 60%;
+  width: 40%;
   background-color: #434343;
   border-radius: 10px;
   border: 2px solid #ff4500;
@@ -333,7 +327,8 @@ Input {
   color: #ffffff;
   font-size: 1.5em;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
-  margin-bottom: 0.5em;
+  margin: 20px 30%;
+  outline: none;
 }
 Input::placeholder {
   font-family: 'Oswald', sans-serif;
@@ -498,7 +493,7 @@ button {
 /* Button Hover*/
 .buttons:hover {
   background: #434343;
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
   -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
   -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
   box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
@@ -510,6 +505,45 @@ button {
   color: #ffffff;
 }
 
+/* Delete Modal */
+.delete-modal {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+.delete-modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  margin: 10% 25%;
+  padding: 1rem;
+  border-radius: 20px;
+  background-color: rgb(51, 51, 51);
+}
+.delete-modal-heading {
+  text-align: center;
+  width: 100%;
+}
+.delete-modal-heading h3 {
+  font-family: 'Oswald', sans-serif;
+  color: #ff4500;
+  font-size: 2em;
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
+}
+.delete-button-container {
+  width: 70%;
+  margin: 0 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 /* Media Queries
    Mobile portait (320px to 414px) — For devices with 4" to 6.9" screens.
    Mobile landscape (568px to 812px) — Same, but landscape.

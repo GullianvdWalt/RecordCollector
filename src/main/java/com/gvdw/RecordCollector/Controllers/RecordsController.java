@@ -82,7 +82,11 @@ import org.springframework.web.servlet.ModelAndView;
     }
     
     
-    // Find Last Id
-    
+    // Delete Record
+    @RequestMapping(value="/delete", method={RequestMethod.DELETE, RequestMethod.GET})
+    public String delete(Long id){
+        recordService.delete(id);
+        return "redirect:/";
+    }
 
 }

@@ -6,6 +6,8 @@ var open = document.getElementById("newRecordBtn");
 
 var editModal = document.getElementById("recordEditModal");
 
+var deleteModal = document.getElementById("deleteModal");
+
 //Open Modal
 $(document).ready(function () {
 
@@ -22,6 +24,15 @@ $(document).ready(function () {
     newModal.style.display = "none";
   });
 
+  // Delete Modal, Confirm Delete
+  $('table #deleteButton').on('click', function (event) {
+    deleteModal.style.display = "block";
+    event.preventDefault();
+    var href = $(this).attr('href');
+    $('#confirmDelete').attr('href', href);
+    $("#deleteModal").modal();
+
+  });
 });
 
 $(document).ready(function () {
@@ -30,7 +41,7 @@ $(document).ready(function () {
   });
 
   $("table #editButton").click(function () {
-    editModal.style.display = "flex";
+    editModal.style.display = "block";
     window.location.hash = '#recordEditModal';
     event.preventDefault();
     // URL for EDIT /findByID/?id=1
@@ -53,6 +64,9 @@ $(document).ready(function () {
     jQuery('#recordEditModal').modal();
     $('#recordEditModal').modal();
 
-  });
+  });;
+
 });
+
+
 
