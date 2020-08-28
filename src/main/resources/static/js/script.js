@@ -7,7 +7,6 @@ var open = document.getElementById("newRecordBtn");
 var editModal = document.getElementById("recordEditModal");
 
 var deleteModal = document.getElementById("deleteModal");
-
 //Open Modal
 $(document).ready(function () {
 
@@ -31,9 +30,10 @@ $(document).ready(function () {
     var href = $(this).attr('href');
     $('#confirmDelete').attr('href', href);
     $("#deleteModal").modal();
-
   });
+
 });
+
 
 $(document).ready(function () {
   $("#close").click(function () {

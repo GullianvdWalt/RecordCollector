@@ -62,6 +62,12 @@ h2 {
   justify-content: center;
   width: 50%;
 }
+.home-link {
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  margin-left: 50px;
+}
 .logo-icon {
   width: 80px;
   height: 80px;
@@ -126,17 +132,21 @@ footer p {
 
 /* Filter Section */
 .filter-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.filter-form {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
   justify-content: center;
-  margin-bottom: 5%;
-  flex-grow: 1;
+  width: 80%;
+  margin: 1rem 10%;
 }
 .filterInput {
   height: 2.5em;
-  width: 16%;
+  width: 500px;
   background-color: #434343;
   border-radius: 10px;
   border: 2px solid #ff4500;
@@ -147,6 +157,7 @@ footer p {
   margin-left: 1em;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
   outline: none;
+  margin: 1rem;
 }
 .filterInput::placeholder {
   font-family: 'Oswald', sans-serif;
@@ -163,6 +174,39 @@ footer p {
   width: 70px;
   height: 70px;
   vertical-align: middle;
+}
+.search-buttons {
+  color: #ff4500;
+  background: #434343;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  width: 5em;
+  padding: 10px;
+  margin: 0 10px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center;
+  outline: none;
+}
+.filter-form a {
+  padding-top: 25px;
+}
+.search-buttons:hover {
+  background: #434343;
+  letter-spacing: 1px;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
 }
 .row-count-container {
   width: 100%;
@@ -194,7 +238,12 @@ th {
   color: #ffffff;
   font-weight: bold;
 }
-
+th a {
+  background-color: #434343;
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+}
 /* Table rows*/
 td,
 th {

@@ -30,6 +30,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import java.util.stream.Collectors;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,28 +40,40 @@ import org.springframework.web.servlet.ModelAndView;
     //Inject Services
     @Autowired private RecordsService recordService;
 
-    @Autowired private SortRepo sortRepository;    
-    
-        @GetMapping("/")
-         public String getRecords(@PageableDefault(size = 200, sort = "id") Pageable pageable,
-                             Model model){
-        
-        Page<Records> page = sortRepository.findAll(pageable);
-        List<Sort.Order> sortOrders = page.getSort().stream().collect(Collectors.toList());
-        if(sortOrders.size() > 0){
-            Sort.Order order = sortOrders.get(0);
-            model.addAttribute("sortProperty", order.getProperty());
-            model.addAttribute("sortDesc", order.getDirection() == Sort.Direction.DESC);
-            
+//    @Autowired private SortRepo sortRepository; 
+  
+        @RequestMapping("/")
+        public String viewHome(Model model){
+          String keyword = null;
+          return getRecords(model, 1, "artist", "asc", keyword);
         }
         
-        model.addAttribute("page", page);		
+        @RequestMapping("/page/{pageNum}")
+        public String getRecords(Model model,
+                                 @PathVariable(name = "pageNum") int pageNum, 
+                                 @Param("sortField") String sortField,
+                                 @Param("sortDir") String sortDir,
+                                 @Param("keyword") String keyword){
+
+        Page<Records> page = recordService.listAll(pageNum, sortField, sortDir, keyword);
+            
+        List<Records> listRecords = page.getContent();
+
+        model.addAttribute("currentPage", pageNum);
 	model.addAttribute("totalPages", page.getTotalPages());
 	model.addAttribute("totalItems", page.getTotalElements());
+        // Sorting
+        model.addAttribute("sortField", sortField);
+	model.addAttribute("sortDir", sortDir);
+	model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("listRecords", listRecords);
+        model.addAttribute("keyword",keyword);
+        
         return "index";
     }
     
-   
+        
+  
     // Add New Record
     @PostMapping("/addNew")
     public String addNew(Records records){
