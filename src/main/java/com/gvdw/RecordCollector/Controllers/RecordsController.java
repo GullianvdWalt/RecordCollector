@@ -1,11 +1,4 @@
 /*
- * This is the ProductController Class
- * The Spring ProductService is injected into the class
- *
- */
-
-
-/*
 * Created By Gullian Van Der Walt 2020
 */
 
@@ -18,22 +11,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.gvdw.RecordCollector.Models.Records;
-import com.gvdw.RecordCollector.Repositories.SortRepo;
 import com.gvdw.RecordCollector.Services.RecordsService;
 import java.util.Optional;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
-import java.util.stream.Collectors;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller public class RecordsController {
 
@@ -76,8 +64,15 @@ import org.springframework.web.servlet.ModelAndView;
   
     // Add New Record
     @PostMapping("/addNew")
-    public String addNew(Records records){
-        recordService.save(records);
+    public String addNew(Records records,RedirectAttributes redirAttr,BindingResult result){
+        
+        if(result.hasErrors()){
+            redirAttr.addFlashAttribute("error", "There was a problem while adding record.");
+        }else{
+            recordService.save(records);
+            redirAttr.addFlashAttribute("success", "Record Added!");
+        }
+        
         return "redirect:/";
     }
         //Find Record By Id
@@ -89,16 +84,27 @@ import org.springframework.web.servlet.ModelAndView;
 
         //Edit Record
     @RequestMapping(value="/update", method={RequestMethod.PUT, RequestMethod.GET})
-    public String update(Records records) {
-        recordService.save(records);
+    public String update(Records records,RedirectAttributes redirAttr,BindingResult result) {
+        if(result.hasErrors()){
+            redirAttr.addFlashAttribute("error", "There was a problem while updating the record.");
+        }else{
+            recordService.save(records);
+            redirAttr.addFlashAttribute("success", "Record Updated!");
+        }
         return "redirect:/";
     }
     
     
     // Delete Record
     @RequestMapping(value="/delete", method={RequestMethod.DELETE, RequestMethod.GET})
-    public String delete(Long id){
-        recordService.delete(id);
+    public String delete(Long id,RedirectAttributes redirAttr,BindingResult result){
+       
+        if(result.hasErrors()){
+            redirAttr.addFlashAttribute("error", "There was a problem while deleting the record.");
+        }else{
+            recordService.delete(id);
+            redirAttr.addFlashAttribute("success", "Record Deleted!");
+        }
         return "redirect:/";
     }
 

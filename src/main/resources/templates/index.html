@@ -89,6 +89,14 @@
   <div class="row-count-container">
     <h3 class="row-count">Total Records: [[${totalItems}]] </h3>
   </div>
+  
+          <div class="messages">
+          <h1 th:text="${success}" th:if="${success}"></h1>
+        </div>
+            <div class="messages">
+          <h1 th:text="${error}" th:if="${success}"></h1>
+        </div>
+  
   <!-- Records Table -->
   <div class="table-section">
     <table id="myTable" class="myTable">
@@ -142,7 +150,7 @@
           <td class="table-data-on-discogs" th:text="${records.on_discogs}">On Discogs </td>
           <td class="table-data-discogs-link"> <a th:href="${records.discogs_link}" target="_blank"><img
                 th:src="@{/Images/link-icon.jpg}" alt="link-icon"> </a></td>
-          <td class="edit-button"><a th:href="@{/findById(id=${records.id})}" id="editButton" class="edit"
+          <td class="edit-button"><a th:href="@{/findById/(id=${records.id})}" id="editButton" class="edit"
               title="edit"><img th:src="@{/Images/edit.png}" class="edit-icon" alt="Edit"></a></td>
           <td class="delete-button"><a th:href="@{/delete/(id=${records.id})}" id="deleteButton" class="delete"
               title="delete"><img th:src="@{/Images/delete.png}" class="delete-icon" alt="Delete"></a></td>
@@ -203,7 +211,7 @@
       </div>
       <div class="edit-form-row">
         <label for="catNumEdit" class="edit-modal-label">Catalog Number</label><br>
-        <input type="text" class="edit-modal-input" id="catNumEdit" name="catatalog_number" required>
+        <input type="text" class="edit-modal-input" id="catNumEdit" name="catalog_number" required>
       </div>
       <div class="edit-form-row">
         <label for="formatEdit" class="edit-modal-label">Format</label><br>
@@ -343,6 +351,7 @@
               <option value="Portugal">Portugal</option>
               <option value="Russian">Russian</option>
               <option value="Taiwan">Taiwan</option>
+               <option value="CAN">Taiwan</option>
             </select>
           </div>
           <!-- End of Form-group left -->
@@ -397,7 +406,6 @@
   </footer>
 
   <!-- jQuery -->
-
   <script th:src="@{/js/script.js}" src="js/script.js"></script>
   <!-- nice scroll -->
   <script src="/js/jquery.scrollTo.min.js"></script>

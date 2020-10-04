@@ -1,5 +1,5 @@
-
-////New Record Modal
+// Created By Gullian Van Der Walt
+// Get New Record Modal
 var newModal = document.getElementById("newRecordModal");
 
 var open = document.getElementById("newRecordBtn");
@@ -58,7 +58,11 @@ $(document).ready(function () {
       $('#pressingEdit').val(records.pressing);
       $('#remarksEdit').val(records.remarks);
       $('#yearEdit').val(records.year);
-      $('#onDiscogsEdit').val(records.on_discogs);
+      if($('#onDiscogsEdit') == true){
+          records.on_discogs = true;     
+      }else{
+          records.on_discogs = false;
+      }
       $('#discogsLinkEdit').val(records.discogs_link);
     });
     jQuery('#recordEditModal').modal();

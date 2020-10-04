@@ -83,6 +83,10 @@ h2 {
   justify-items: center;
   padding: 20px;
 }
+.messages{
+    
+    text-align: center;
+}
 button {
   background: #ff4500;
   border: 1px solid #000000;
