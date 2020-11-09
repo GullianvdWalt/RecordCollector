@@ -69,7 +69,6 @@
       + ${keyword != null ? '&keyword=' + keyword : '' }">Last</a>
 		<span th:unless="${currentPage < totalPages}">Last</span>
 		&nbsp;&nbsp;
-
   </div>
 
   <!-- Filter Section -->
@@ -174,7 +173,7 @@
     &nbsp;&nbsp;
 
     <!-- Page Numbers -->
-    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+    <span th:each="i: ${#numbers.sequence(2, totalPages)}">
 			<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
 			<span th:unless="${currentPage != i}">[[${i}]]</span>
 			&nbsp;
